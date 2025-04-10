@@ -1,0 +1,84 @@
+###############################################################################
+# config/production.yaml
+#
+# Configuration file for production deployment.
+#
+# This file defines production-level parameters and endpoints including
+# secure AWS configurations, production S3 bucket names, higher-capacity model
+# hyperparameters, robust logging, and deployment settings for AWS SageMaker.
+#
+# IMPORTANT: Use secure methods (e.g., environment variables, AWS Secrets Manager)
+#          to handle sensitive data like AWS credentials. The placeholder syntax
+#          (e.g., ${AWS_ACCESS_KEY_ID}) assumes these are provided in the runtime.
+###############################################################################
+
+# Environment settings
+environment: production
+debug: false
+
+# AWS production configuration
+aws:
+  region: us-east-1
+  s3:
+    # Production S3 bucket for storing processed retail data
+    bucket: "prod-retail-data-bucket"
+    # In production, endpoint_url is left empty so the default AWS endpoint is used.
+    endpoint_url: ""
+    use_localstack: false
+  lambda:
+    # For production, schedule retraining jobs less frequently (e.g., once daily)
+    trigger_frequency: "daily"
+  credentials:
+    # Credentials are expected to be set as environment variables on the production host.
+    access_key_id: ${AWS_ACCESS_KEY_ID}
+    secret_access_key: ${AWS_SECRET_ACCESS_KEY}
+
+# Data storage paths for production (using S3)
+data:
+  # S3 URIs for raw, interim, and processed data. Adjust bucket paths as needed.
+  raw: "s3://prod-retail-data-bucket/raw"
+  interim: "s3://prod-retail-data-bucket/interim"
+  processed: "s3://prod-retail-data-bucket/processed"
+
+# Logging configuration
+logging:
+  # In production, use a higher logging level to reduce noise.
+  level: INFO
+  # Log output file location or destination in production.
+  file: "/var/log/kpi_forecast_anomaly.log"
+
+# Model hyperparameters and settings tuned for production performance
+model:
+  forecasting:
+    arima:
+      # ARIMA model order tuned for production forecasting.
+      order: [2, 1, 2]
+      seasonal_order: [0, 1, 1, 12]
+    prophet:
+      # Prophet model using multiplicative seasonality for complex trends.
+      seasonality_mode: "multiplicative"
+      changepoint_prior_scale: 0.1
+    lstm:
+      # LSTM network settings with increased capacity and longer training epochs.
+      units: 100
+      dropout: 0.3
+      epochs: 50
+      batch_size: 64
+  anomaly_detection:
+    isolation_forest:
+      # More robust Isolation Forest settings for production anomaly detection.
+      n_estimators: 200
+      contamination: 0.005
+    z_score:
+      # A slightly tighter Z-Score threshold for anomaly flagging.
+      threshold: 2.5
+
+# Deployment settings for production
+deployment:
+  sagemaker:
+    # Name of the deployed endpoint in AWS SageMaker.
+    endpoint_name: "prod-forecast-anomaly-endpoint"
+    # SageMaker instance type for model hosting.
+    instance_type: "ml.m5.large"
+    # Initial number of instances to handle the production workload.
+    initial_instance_count: 2

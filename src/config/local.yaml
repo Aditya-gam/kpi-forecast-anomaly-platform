@@ -1,0 +1,79 @@
+###############################################################################
+# config/local.yaml
+#
+# Configuration file for the local development environment.
+#
+# This file contains parameters and paths specific to your local setup,
+# including local endpoints (e.g., LocalStack for AWS S3), file system paths,
+# model hyperparameters for rapid iteration, and detailed logging.
+#
+# IMPORTANT: For credentials, use environment variables or secrets management
+#          instead of hardcoding in production. These values here are for
+#          development/testing only.
+###############################################################################
+
+# Environment settings
+environment: local
+debug: true
+
+# AWS configuration for local development (commonly using LocalStack)
+aws:
+  region: us-east-1
+  s3:
+    # Use a local S3 bucket (e.g., when using LocalStack) for data storage.
+    bucket: "local-retail-data"
+    # Set the endpoint URL to point to your LocalStack instance.
+    endpoint_url: "http://localhost:4566"
+    use_localstack: true
+  lambda:
+    # Frequency for triggering retraining jobs (e.g., on an hourly basis during development)
+    trigger_frequency: "hourly"
+  credentials:
+    # Dummy credentials (for local development only – override with env vars)
+    access_key_id: "your_local_access_key"
+    secret_access_key: "your_local_secret_key"
+
+# Data storage paths for local files
+data:
+  raw: "./data/raw"
+  interim: "./data/interim"
+  processed: "./data/processed"
+
+# Logging configuration
+logging:
+  # For local debugging, use a more verbose level.
+  level: DEBUG
+  # Log file location for development
+  file: "./logs/development.log"
+
+# Model hyperparameters and settings
+model:
+  forecasting:
+    arima:
+      # ARIMA model order (p, d, q)
+      order: [1, 1, 1]
+      # Seasonal order: (P, D, Q, S)
+      seasonal_order: [0, 1, 1, 12]
+    prophet:
+      # Prophet model: additive seasonality and a moderate changepoint sensitivity.
+      seasonality_mode: "additive"
+      changepoint_prior_scale: 0.05
+    lstm:
+      # LSTM network settings for rapid development (lower epochs for quicker iterations).
+      units: 50
+      dropout: 0.2
+      epochs: 10
+      batch_size: 32
+  anomaly_detection:
+    isolation_forest:
+      # Isolation Forest configuration
+      n_estimators: 100
+      contamination: 0.01
+    z_score:
+      # Z-Score threshold used for anomaly detection.
+      threshold: 3.0
+
+# Deployment settings for local development (e.g., local SageMaker testing)
+deployment:
+  sagemaker:
+    endpoint_name: "local-forecast-anomaly-endpoint"
