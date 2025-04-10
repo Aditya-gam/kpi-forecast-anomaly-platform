@@ -1,0 +1,106 @@
+###############################################################################
+# .github/workflows/ci.yml
+#
+# CI Workflow for the kpi-forecast-anomaly-platform project.
+#
+# This workflow triggers on pushes to the "main" branch (or release branches)
+# and on pull requests to "main". It defines two jobs:
+#
+# 1. "test": Sets up Python (using a matrix for version flexibility), caches
+#    pip dependencies, installs project dependencies, and runs Makefile targets
+#    to execute linting, testing, and build distribution creation.
+#
+# 2. "docker": Runs after the "test" job, builds the Docker image, then starts
+#    the container to perform a simple endpoint test.
+#
+# Environment variables and caching ensure efficient and repeatable builds.
+###############################################################################
+name: CI Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - 'release/*'
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  test:
+    name: Lint, Test, and Build Distributions
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [ "3.11" ]
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        # Checks out the repository so that workflow jobs can access the code.
+
+      - name: Set Up Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v4
+        with:
+          python-version: ${{ matrix.python-version }}
+        # Sets up the desired Python version for the project.
+
+      - name: Cache pip Dependencies
+        uses: actions/cache@v3
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt', 'requirements.in', 'dev-requirements.in') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-
+        # Caches pip dependencies to reduce installation time on subsequent runs.
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install pip-tools
+          # Uses the Makefile to create the virtual environment and install all project
+          # dependencies (including dev extras).
+          make install
+
+      - name: Run Linters
+        run: make lint
+        # Runs code linters (flake8, black, isort) via the Makefile target.
+
+      - name: Run Tests
+        run: make test
+        # Executes the project's test suite using pytest.
+
+      - name: Build Distributions
+        run: make build
+        # Cleans previous builds and creates new source and wheel distributions.
+
+  docker:
+    name: Docker Build and Integration Test
+    runs-on: ubuntu-latest
+    needs: test
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        # Checks out the repository for Docker build steps.
+
+      - name: Set Up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+        # Configures Docker Buildx for building multi-platform images (if needed).
+
+      - name: Build Docker Image
+        run: make docker-build
+        # Uses the Makefile target to build the Docker image based on the provided Dockerfile.
+
+      - name: Run Docker Container and Test Endpoint
+        run: |
+          # Run the Docker container in detached mode.
+          docker run --rm -d -p 8080:8080 --name test_app $(DOCKER_IMAGE)
+          # Allow time for the container to start up.
+          sleep 5
+          # Test the endpoint; if the curl command fails, output the container logs.
+          if ! curl --fail http://localhost:8080; then
+              echo "Container did not respond as expected. Logs:"
+              docker logs test_app
+              exit 1
+          fi
+          # Stop the container after testing.
+          docker stop test_app

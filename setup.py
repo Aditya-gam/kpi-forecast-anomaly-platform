@@ -31,7 +31,7 @@ setup(
         "Topic :: Scientific/Engineering :: Artificial Intelligence",
         "Topic :: Software Development :: Build Tools",
         "License :: OSI Approved :: MIT Software License",
-        "Programming Language :: Python :: 3.12",
+        "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3 :: Only",
     ],
     python_requires=">=3.11",
