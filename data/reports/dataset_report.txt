@@ -44,7 +44,7 @@ Sample Data (First 5 Rows):
 Extended Insights & Analysis
 ======================================================================
 Revenue Calculation:
- - Revenue (Price x Quantity) has been calculated for each transaction.
+ - Revenue (Price x Quantity) computed for each transaction.
 
 Monthly Revenue Summary:
   Month     Revenue
@@ -142,5 +142,9 @@ Revenue      0.156283  0.452592    -0.009475  1.000000
 Plots Generated:
  - Quantity Distribution: data/reports/plots/quantity_distribution.png
  - Price Distribution: data/reports/plots/price_distribution.png
- - Monthly Revenue Trend: data/reports/plots/monthly_revenue_trend.png
+ - Monthly Revenue Trend: data/reports/plots/monthly_revenue_trend_enhanced.png
  - Correlation Heatmap: data/reports/plots/correlation_heatmap.png
+ - Price vs. Quantity Scatter: data/reports/plots/price_vs_quantity_scatter.png
+ - Price & Quantity Boxplots: data/reports/plots/price_quantity_boxplots.png
+ - Numeric Features Pairplot: data/reports/plots/numeric_pairplot.png
+ - Monthly Avg Price & Quantity: data/reports/plots/monthly_avg_price_quantity.png
