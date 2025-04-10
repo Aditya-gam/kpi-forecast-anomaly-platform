@@ -51,6 +51,8 @@ dill==0.3.9
     #   pathos
 docker==7.1.0
     # via sagemaker
+et-xmlfile==2.0.0
+    # via openpyxl
 fastapi==0.115.12
     # via sagemaker
 flatbuffers==25.2.10
@@ -113,6 +115,7 @@ matplotlib==3.10.1
     # via
     #   -r requirements.in
     #   prophet
+    #   seaborn
 mdurl==0.1.2
     # via markdown-it-py
 ml-dtypes==0.5.1
@@ -140,12 +143,15 @@ numpy==1.26.4
     #   sagemaker
     #   scikit-learn
     #   scipy
+    #   seaborn
     #   stanio
     #   statsmodels
     #   tensorboard
     #   tensorflow
 omegaconf==2.3.0
     # via sagemaker
+openpyxl==3.1.5
+    # via -r requirements.in
 opt-einsum==3.4.0
     # via tensorflow
 optree==0.15.0
@@ -164,6 +170,7 @@ pandas==2.2.3
     #   cmdstanpy
     #   prophet
     #   sagemaker
+    #   seaborn
     #   statsmodels
 pathos==0.3.3
     # via sagemaker
@@ -242,6 +249,8 @@ scipy==1.15.2
     # via
     #   scikit-learn
     #   statsmodels
+seaborn==0.13.2
+    # via -r requirements.in
 six==1.17.0
     # via
     #   astunparse

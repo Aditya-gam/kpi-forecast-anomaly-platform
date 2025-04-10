@@ -8,3 +8,5 @@ prophet==1.1.6
 tensorflow==2.19.0
 boto3==1.37.31
 sagemaker==2.243.0
+seaborn==0.13.2
+openpyxl==3.1.5

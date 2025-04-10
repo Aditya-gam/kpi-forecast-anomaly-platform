@@ -1,0 +1,146 @@
+Retail Sales Data (UCI) - Basic Overview Report
+======================================================================
+Dataset Shape (rows x columns): (525461, 8)
+
+Column Information:
+ - Invoice        : dtype=object, missing=    0, unique=28816
+ - StockCode      : dtype=object, missing=    0, unique= 4632
+ - Description    : dtype=object, missing= 2928, unique= 4681
+ - Quantity       : dtype=int64, missing=    0, unique=  825
+ - InvoiceDate    : dtype=datetime64[ns], missing=    0, unique=25296
+ - Price          : dtype=float64, missing=    0, unique= 1606
+ - Customer ID    : dtype=float64, missing=107927, unique= 4383
+ - Country        : dtype=object, missing=    0, unique=   40
+
+Statistical Summary for Numeric Columns:
+            Quantity          Price    Customer ID
+count  525461.000000  525461.000000  417534.000000
+mean       10.337667       4.688834   15360.645478
+std       107.424110     146.126914    1680.811316
+min     -9600.000000  -53594.360000   12346.000000
+25%         1.000000       1.250000   13983.000000
+50%         3.000000       2.100000   15311.000000
+75%        10.000000       4.210000   16799.000000
+max     19152.000000   25111.090000   18287.000000
+
+InvoiceDate Analysis:
+ - Earliest Invoice Date: 2009-12-01 07:45:00
+ - Latest Invoice Date  : 2010-12-09 20:01:00
+
+Invoice Cancellation Analysis:
+ - Total Invoices       : 525461
+ - Cancellation Invoices: 10206 (1.94%)
+
+Sample Data (First 5 Rows):
+======================================================================
+  Invoice StockCode                          Description  Quantity         InvoiceDate  Price  Customer ID         Country
+0  489434     85048  15CM CHRISTMAS GLASS BALL 20 LIGHTS        12 2009-12-01 07:45:00   6.95      13085.0  United Kingdom
+1  489434    79323P                   PINK CHERRY LIGHTS        12 2009-12-01 07:45:00   6.75      13085.0  United Kingdom
+2  489434    79323W                  WHITE CHERRY LIGHTS        12 2009-12-01 07:45:00   6.75      13085.0  United Kingdom
+3  489434     22041         RECORD FRAME 7" SINGLE SIZE         48 2009-12-01 07:45:00   2.10      13085.0  United Kingdom
+4  489434     21232       STRAWBERRY CERAMIC TRINKET BOX        24 2009-12-01 07:45:00   1.25      13085.0  United Kingdom
+======================================================================
+
+Extended Insights & Analysis
+======================================================================
+Revenue Calculation:
+ - Revenue (Price x Quantity) has been calculated for each transaction.
+
+Monthly Revenue Summary:
+  Month     Revenue
+2009-12  799847.110
+2010-01  624032.892
+2010-02  533091.426
+2010-03  765848.761
+2010-04  590580.432
+2010-05  615322.830
+2010-06  679786.610
+2010-07  575236.360
+2010-08  656776.340
+2010-09  853650.431
+2010-10 1045168.350
+2010-11 1422654.642
+2010-12  377488.450
+
+Top 10 Products by Total Quantity Sold:
+                       Description  Total_Quantity  Total_Revenue  Transaction_Count
+WHITE HANGING HEART T-LIGHT HOLDER           57733      157865.43               3549
+ WORLD WAR 2 GLIDERS ASSTD DESIGNS           54698       11310.29                514
+               BROCADE RING PURSE            47647        8879.82                238
+  PACK OF 72 RETRO SPOT CAKE CASES           46106       23759.26               1466
+     ASSORTED COLOUR BIRD ORNAMENT           44925       72454.12               1457
+       60 TEATIME FAIRY CAKE CASES           36326       18128.25               1400
+PACK OF 60 PINK PAISLEY CAKE CASES           31822       16184.21               1196
+           JUMBO BAG RED RETROSPOT           30727       56444.61               1310
+              SMALL POPCORN HOLDER           29500       26791.95                951
+    STRAWBERRY CERAMIC TRINKET BOX           26563       33834.70               1843
+
+Top 10 Products by Total Revenue:
+                        Description  Total_Quantity  Total_Revenue  Transaction_Count
+           REGENCY CAKESTAND 3 TIER           13093      163051.46               2212
+ WHITE HANGING HEART T-LIGHT HOLDER           57733      157865.43               3549
+                     DOTCOM POSTAGE             731      116401.99                735
+      ASSORTED COLOUR BIRD ORNAMENT           44925       72454.12               1457
+    PAPER CHAIN KIT 50'S CHRISTMAS            17083       57870.20               1005
+            JUMBO BAG RED RETROSPOT           30727       56444.61               1310
+                      PARTY BUNTING           10088       49645.52               1038
+ROTATING SILVER ANGELS T-LIGHT HLDR           13675       47672.49                369
+                            POSTAGE            2154       46092.36                862
+               JUMBO BAG STRAWBERRY           19985       36699.61               1091
+
+Country-Level Analysis (by Total Revenue):
+             Country  Transactions  Total_Revenue
+      United Kingdom        485852    8194777.533
+                EIRE          9670     352242.730
+         Netherlands          2769     263863.410
+             Germany          8129     196290.351
+              France          5772     130769.900
+              Sweden           902      51213.510
+             Denmark           428      46972.950
+         Switzerland          1187      43343.410
+               Spain          1278      37084.900
+           Australia           654      30051.800
+            Portugal          1101      23769.780
+             Belgium          1054      22663.530
+     Channel Islands           906      21367.320
+              Greece           517      14284.970
+               Italy           731      13788.840
+             Austria           537      13023.280
+              Cyprus           554      11216.450
+               Japan           224       8435.960
+United Arab Emirates           432       8046.370
+             Finland           354       7187.710
+         Unspecified           310       4937.530
+           Lithuania           154       4892.680
+                 USA           244       4555.620
+              Norway           369       4079.570
+           Singapore           117       4037.770
+           Hong Kong            76       3922.260
+              Poland           194       3314.950
+              Israel            74       3199.400
+            Thailand            76       3070.540
+               Malta           172       2686.750
+                 RSA           111       2366.720
+             Bahrain           107       2313.150
+             Iceland            71       1323.320
+             Bermuda            34       1253.140
+              Canada            77       1216.660
+               Korea            63        949.820
+         West Indies            54        536.410
+              Brazil            62        268.270
+             Lebanon            13        172.030
+             Nigeria            32         -6.660
+
+Correlation Matrix for Numeric Features:
+             Quantity     Price  Customer ID   Revenue
+Quantity     1.000000 -0.001931    -0.011577  0.156283
+Price       -0.001931  1.000000    -0.003266  0.452592
+Customer ID -0.011577 -0.003266     1.000000 -0.009475
+Revenue      0.156283  0.452592    -0.009475  1.000000
+
+
+Plots Generated:
+ - Quantity Distribution: data/reports/plots/quantity_distribution.png
+ - Price Distribution: data/reports/plots/price_distribution.png
+ - Monthly Revenue Trend: data/reports/plots/monthly_revenue_trend.png
+ - Correlation Heatmap: data/reports/plots/correlation_heatmap.png
