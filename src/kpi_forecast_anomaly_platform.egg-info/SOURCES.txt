@@ -1,0 +1,11 @@
+LICENSE
+README.md
+setup.py
+src/config/__init__.py
+src/kpi_forecast_anomaly_platform.egg-info/PKG-INFO
+src/kpi_forecast_anomaly_platform.egg-info/SOURCES.txt
+src/kpi_forecast_anomaly_platform.egg-info/dependency_links.txt
+src/kpi_forecast_anomaly_platform.egg-info/entry_points.txt
+src/kpi_forecast_anomaly_platform.egg-info/not-zip-safe
+src/kpi_forecast_anomaly_platform.egg-info/requires.txt
+src/kpi_forecast_anomaly_platform.egg-info/top_level.txt

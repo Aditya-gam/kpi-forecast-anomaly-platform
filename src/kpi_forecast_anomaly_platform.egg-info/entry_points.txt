@@ -1,0 +1,6 @@
+[console_scripts]
+detect-anomalies = scripts.detect_anomalies:main
+download-data = scripts.download_dataset:main
+preprocess-data = scripts.preprocess_data:main
+run-forecasting = scripts.run_forecasting:main
+upload-to-s3 = scripts.upload_to_s3:main

@@ -1,0 +1,57 @@
+Metadata-Version: 2.4
+Name: kpi-forecast-anomaly-platform
+Version: 0.1.0
+Summary: End-to-end platform for forecasting financial KPIs and detecting anomalies using ML and AWS.
+Home-page: https://github.com/Aditya-gam/kpi-forecast-anomaly-platform
+Author: Aditya Gambhir
+Author-email: gambhir.aditya19@gmail.com
+License: MIT License
+Project-URL: Documentation, https://github.com/Aditya-gam/kpi-forecast-anomaly-platform#readme
+Project-URL: Source, https://github.com/Aditya-gam/kpi-forecast-anomaly-platform
+Project-URL: Tracker, https://github.com/Aditya-gam/kpi-forecast-anomaly-platform/issues
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Developers
+Classifier: Intended Audience :: Science/Research
+Classifier: Topic :: Scientific/Engineering :: Artificial Intelligence
+Classifier: Topic :: Software Development :: Build Tools
+Classifier: License :: OSI Approved :: MIT Software License
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3 :: Only
+Requires-Python: >=3.11
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: numpy==1.26.4
+Requires-Dist: pandas==2.2.3
+Requires-Dist: scikit-learn==1.6.1
+Requires-Dist: matplotlib==3.10.1
+Requires-Dist: statsmodels==0.14.4
+Requires-Dist: prophet==1.1.6
+Requires-Dist: tensorflow==2.19.0
+Requires-Dist: boto3==1.37.31
+Requires-Dist: sagemaker==2.243.0
+Provides-Extra: dev
+Requires-Dist: setuptools; extra == "dev"
+Requires-Dist: wheel; extra == "dev"
+Requires-Dist: build; extra == "dev"
+Requires-Dist: pip-tools; extra == "dev"
+Requires-Dist: pytest; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: isort; extra == "dev"
+Requires-Dist: pre-commit; extra == "dev"
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: license
+Dynamic: license-file
+Dynamic: project-url
+Dynamic: provides-extra
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# kpi-forecast-anomaly-platform
+End-to-end industry-level platform for forecasting financial KPIs and detecting anomalies using machine learning and AWS services. Powered by SageMaker, S3, QuickSight, and LSTM/Prophet/ARIMA models on real retail data.

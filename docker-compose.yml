@@ -1,0 +1,73 @@
+###############################################################################
+# docker-compose.yml
+#
+# This file orchestrates multiple services:
+#
+#   1. app:
+#      - Builds and runs the main application (kpi-forecast-anomaly-platform)
+#      - Exposes port 8080
+#      - Depends on the localstack service to mimic AWS S3 operations
+#      - Environment variables are passed via the host’s .env file.
+#
+#   2. localstack:
+#      - Uses the official LocalStack image to mimic AWS services (e.g., S3)
+#      - Exposes port 4566 (the unified edge port for AWS service emulation)
+#
+# Notes:
+#   - Environment variables (e.g., AWS credentials) are assumed to be defined in a
+#     .env file in the same directory.
+#   - Volumes are used for persistent storage (e.g., logs for the app and data for
+#     LocalStack).
+#   - A custom bridge network ("app-network") is defined for inter-service communication.
+###############################################################################
+services:
+  app:
+    container_name: kpi_forecast_anomaly_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: kpi-forecast-anomaly-platform:latest
+    restart: always
+    ports:
+      - "8080:8080"  # Exposes the application on host port 8080
+    depends_on:
+      - localstack  # Waits for LocalStack to be available before starting
+    environment:
+      # AWS and application environment variables are automatically
+      # populated from the host's .env file.
+      AWS_ACCESS_KEY_ID: ${AWS_ACCESS_KEY_ID}
+      AWS_SECRET_ACCESS_KEY: ${AWS_SECRET_ACCESS_KEY}
+      AWS_DEFAULT_REGION: ${AWS_DEFAULT_REGION}
+      DATA_PATH: ${DATA_PATH}
+      # Additional environment variables for your application can be defined here.
+    networks:
+      - app-network
+    volumes:
+      # Mount a local directory for log persistence or other shared data.
+      - ./logs:/app/logs
+
+  localstack:
+    container_name: localstack
+    image: localstack/localstack:latest
+    restart: always
+    ports:
+      - "4566:4566"   # Unified edge port that LocalStack uses for all services (including S3)
+      # Additional port mappings can be defined if other services are required.
+    environment:
+      - SERVICES=s3   # Limit services to only S3; add more comma-separated services as needed.
+      - DEFAULT_REGION=${AWS_DEFAULT_REGION}
+      - DATA_DIR=/tmp/localstack/data   # Location where LocalStack will store data
+    volumes:
+      # Persist LocalStack data in a local directory.
+      - "./localstack_data:/tmp/localstack"
+    networks:
+      - app-network
+
+###############################################################################
+# Networks Definition
+#
+# The custom "app-network" isolates the inter-service communication from other networks.
+###############################################################################
+networks:
+  app-network:
+    driver: bridge
