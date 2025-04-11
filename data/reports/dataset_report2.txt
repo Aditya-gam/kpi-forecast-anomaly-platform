@@ -1,0 +1,148 @@
+Retail Sales Data (UCI) - Basic Overview Report
+======================================================================
+Dataset Shape (rows x columns): (541909, 8)
+
+Column Information:
+ - InvoiceNo      : dtype=object, missing=    0, unique=25900
+ - StockCode      : dtype=object, missing=    0, unique= 4070
+ - Description    : dtype=object, missing= 1454, unique= 4223
+ - Quantity       : dtype=int64, missing=    0, unique=  722
+ - InvoiceDate    : dtype=datetime64[ns], missing=    0, unique=23260
+ - UnitPrice      : dtype=float64, missing=    0, unique= 1630
+ - CustomerID     : dtype=float64, missing=135080, unique= 4372
+ - Country        : dtype=object, missing=    0, unique=   38
+
+Statistical Summary for Numeric Columns:
+            Quantity      UnitPrice     CustomerID
+count  541909.000000  541909.000000  406829.000000
+mean        9.552250       4.611114   15287.690570
+std       218.081158      96.759853    1713.600303
+min    -80995.000000  -11062.060000   12346.000000
+25%         1.000000       1.250000   13953.000000
+50%         3.000000       2.080000   15152.000000
+75%        10.000000       4.130000   16791.000000
+max     80995.000000   38970.000000   18287.000000
+
+InvoiceDate Analysis:
+ - Earliest Invoice Date: 2010-12-01 08:26:00
+ - Latest Invoice Date  : 2011-12-09 12:50:00
+
+Invoice Cancellation Analysis:
+ - Total Invoices       : 541909
+ - Cancellation Invoices: 9288 (1.71%)
+
+Sample Data (First 5 Rows):
+======================================================================
+  InvoiceNo StockCode                          Description  Quantity         InvoiceDate  UnitPrice  CustomerID         Country
+0    536365    85123A   WHITE HANGING HEART T-LIGHT HOLDER         6 2010-12-01 08:26:00       2.55     17850.0  United Kingdom
+1    536365     71053                  WHITE METAL LANTERN         6 2010-12-01 08:26:00       3.39     17850.0  United Kingdom
+2    536365    84406B       CREAM CUPID HEARTS COAT HANGER         8 2010-12-01 08:26:00       2.75     17850.0  United Kingdom
+3    536365    84029G  KNITTED UNION FLAG HOT WATER BOTTLE         6 2010-12-01 08:26:00       3.39     17850.0  United Kingdom
+4    536365    84029E       RED WOOLLY HOTTIE WHITE HEART.         6 2010-12-01 08:26:00       3.39     17850.0  United Kingdom
+======================================================================
+
+Extended Insights & Analysis
+======================================================================
+Revenue Calculation:
+ - Revenue (Price x Quantity) computed for each transaction.
+
+Monthly Revenue Summary:
+  Month     Revenue
+2010-12  748957.020
+2011-01  560000.260
+2011-02  498062.650
+2011-03  683267.080
+2011-04  493207.121
+2011-05  723333.510
+2011-06  691123.120
+2011-07  681300.111
+2011-08  682680.510
+2011-09 1019687.622
+2011-10 1070704.670
+2011-11 1461756.250
+2011-12  433668.010
+
+Top 10 Products by Total Quantity Sold:
+                       Description  Total_Quantity  Total_Revenue  Transaction_Count
+ WORLD WAR 2 GLIDERS ASSTD DESIGNS           53847       13587.93                542
+           JUMBO BAG RED RETROSPOT           47363       92356.03               2159
+     ASSORTED COLOUR BIRD ORNAMENT           36381       58959.73               1501
+                    POPCORN HOLDER           36334       33969.46                865
+   PACK OF 72 RETROSPOT CAKE CASES           36039       21059.72               1385
+WHITE HANGING HEART T-LIGHT HOLDER           35317       99668.47               2369
+                RABBIT NIGHT LIGHT           30680       66756.59               1051
+           MINI PAINT SET VINTAGE            26437       16810.42                390
+        PACK OF 12 LONDON TISSUES            26315        7972.76                531
+PACK OF 60 PINK PAISLEY CAKE CASES           24753       12189.47                896
+
+Top 10 Products by Total Revenue:
+                       Description  Total_Quantity  Total_Revenue  Transaction_Count
+                    DOTCOM POSTAGE             707      206245.48                709
+          REGENCY CAKESTAND 3 TIER           13033      164762.19               2200
+WHITE HANGING HEART T-LIGHT HOLDER           35317       99668.47               2369
+                     PARTY BUNTING           18022       98302.98               1727
+           JUMBO BAG RED RETROSPOT           47363       92356.03               2159
+                RABBIT NIGHT LIGHT           30680       66756.59               1051
+                           POSTAGE            3003       66230.64               1252
+   PAPER CHAIN KIT 50'S CHRISTMAS            18902       63791.94               1210
+     ASSORTED COLOUR BIRD ORNAMENT           36381       58959.73               1501
+                     CHILLI LIGHTS           10229       53768.06                679
+
+Country-Level Analysis (by Total Revenue):
+             Country  Transactions  Total_Revenue
+      United Kingdom        495478    8187806.364
+         Netherlands          2371     284661.540
+                EIRE          8196     263276.820
+             Germany          9495     221698.210
+              France          8557     197403.900
+           Australia          1259     137077.270
+         Switzerland          2002      56385.350
+               Spain          2533      54774.580
+             Belgium          2069      40910.960
+              Sweden           462      36595.910
+               Japan           358      35340.620
+              Norway          1086      35163.460
+            Portugal          1519      29367.020
+             Finland           695      22326.740
+     Channel Islands           758      20086.290
+             Denmark           389      18768.140
+               Italy           803      16890.510
+              Cyprus           622      12946.290
+             Austria           401      10154.320
+           Hong Kong           288      10117.040
+           Singapore           229       9120.390
+              Israel           297       7907.820
+              Poland           341       7213.140
+         Unspecified           446       4749.790
+              Greece           146       4710.520
+             Iceland           182       4310.000
+              Canada           151       3666.380
+               Malta           127       2505.470
+United Arab Emirates            68       1902.280
+                 USA           291       1730.920
+             Lebanon            45       1693.880
+           Lithuania            35       1661.060
+  European Community            61       1291.750
+              Brazil            32       1143.600
+                 RSA            58       1002.310
+      Czech Republic            30        707.720
+             Bahrain            19        548.400
+        Saudi Arabia            10        131.170
+
+Correlation Matrix for Numeric Features:
+            Quantity  UnitPrice  CustomerID   Revenue
+Quantity    1.000000  -0.001235   -0.003600  0.886681
+UnitPrice  -0.001235   1.000000   -0.004560 -0.162029
+CustomerID -0.003600  -0.004560    1.000000 -0.002274
+Revenue     0.886681  -0.162029   -0.002274  1.000000
+
+
+Plots Generated:
+ - Quantity Distribution: data/reports/plots1/quantity_distribution.png
+ - Price Distribution: data/reports/plots1/price_distribution.png
+ - Monthly Revenue Trend: data/reports/plots1/monthly_revenue_trend_enhanced.png
+ - Correlation Heatmap: data/reports/plots1/correlation_heatmap.png
+ - Price vs. Quantity Scatter: data/reports/plots1/price_vs_quantity_scatter.png
+ - Price & Quantity Boxplots: data/reports/plots1/price_quantity_boxplots.png
+ - Numeric Features Pairplot: data/reports/plots1/numeric_pairplot.png
+ - Monthly Avg Price & Quantity: data/reports/plots1/monthly_avg_price_quantity.png

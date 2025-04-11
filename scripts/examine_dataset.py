@@ -31,7 +31,7 @@ The report includes:
 All plots are saved in the './data/reports/plots' directory, and their file paths are included in the final report.
 
 Usage:
-    python examine_dataset.py [--input INPUT_FILE] [--output REPORT_FILE]
+    python scripts/examine_dataset.py [--input INPUT_FILE] [--output REPORT_FILE]
 
 Arguments:
     --input     Path to the dataset Excel file (default: "./data/raw/online_retail_II.xlsx").
@@ -69,7 +69,7 @@ DEFAULT_INPUT = os.path.join(
     os.getenv("DATA_PATH", "./data/raw"), "online_retail_II.xlsx")
 DEFAULT_OUTPUT = os.path.join(
     os.getenv("DATA_PATH", "./data/reports"), "dataset_report.txt")
-PLOTS_DIR = os.path.join("data", "reports", "plots")
+PLOTS_DIR = os.path.join("data", "reports", "plots1")
 
 
 def generate_basic_report(df: pd.DataFrame) -> str:
@@ -118,8 +118,8 @@ def generate_basic_report(df: pd.DataFrame) -> str:
             lines.append(f" - Error converting InvoiceDate: {e}\n")
 
     # Invoice cancellation analysis.
-    if 'Invoice' in df.columns:
-        cancellation_count = df['Invoice'].astype(
+    if 'InvoiceNo' in df.columns:
+        cancellation_count = df['InvoiceNo'].astype(
             str).str.startswith('C').sum()
         total = df.shape[0]
         lines.append("Invoice Cancellation Analysis:")
@@ -157,8 +157,8 @@ def generate_extended_insights(df: pd.DataFrame) -> str:
     lines.append(divider)
 
     # Compute revenue.
-    if 'Price' in df.columns and 'Quantity' in df.columns:
-        df['Revenue'] = df['Price'] * df['Quantity']
+    if 'UnitPrice' in df.columns and 'Quantity' in df.columns:
+        df['Revenue'] = df['UnitPrice'] * df['Quantity']
         lines.append("Revenue Calculation:")
         lines.append(
             " - Revenue (Price x Quantity) computed for each transaction.\n")
@@ -183,7 +183,7 @@ def generate_extended_insights(df: pd.DataFrame) -> str:
         product_stats = df.groupby('Description').agg(
             Total_Quantity=('Quantity', 'sum'),
             Total_Revenue=('Revenue', 'sum'),
-            Transaction_Count=('Invoice', 'count')
+            Transaction_Count=('InvoiceNo', 'count')
         ).reset_index()
         top10_qty = product_stats.sort_values(
             by='Total_Quantity', ascending=False).head(10)
@@ -202,7 +202,7 @@ def generate_extended_insights(df: pd.DataFrame) -> str:
     # Country-level analysis.
     if 'Country' in df.columns:
         country_stats = df.groupby('Country').agg(
-            Transactions=('Invoice', 'count'),
+            Transactions=('InvoiceNo', 'count'),
             Total_Revenue=('Revenue', 'sum')
         ).reset_index().sort_values(by='Total_Revenue', ascending=False)
         lines.append("Country-Level Analysis (by Total Revenue):")
@@ -261,7 +261,7 @@ def save_plots(df: pd.DataFrame) -> dict:
 
     # Plot 2: Price Distribution Histogram.
     plt.figure(figsize=(8, 6))
-    plt.hist(df['Price'], bins=50, edgecolor='black', color='salmon')
+    plt.hist(df['UnitPrice'], bins=50, edgecolor='black', color='salmon')
     plt.title("Distribution of Price")
     plt.xlabel("Price")
     plt.ylabel("Frequency")
@@ -308,7 +308,7 @@ def save_plots(df: pd.DataFrame) -> dict:
 
     # Plot 5: Scatter Plot (Price vs. Quantity) with regression line.
     plt.figure(figsize=(8, 6))
-    sns.regplot(x='Price', y='Quantity', data=df, scatter_kws={
+    sns.regplot(x='UnitPrice', y='Quantity', data=df, scatter_kws={
                 'alpha': 0.3}, line_kws={'color': 'red'})
     plt.title("Scatter Plot: Price vs. Quantity")
     scatter_path = os.path.join(PLOTS_DIR, "price_vs_quantity_scatter.png")
@@ -319,7 +319,7 @@ def save_plots(df: pd.DataFrame) -> dict:
     # Plot 6: Boxplots for Price and Quantity.
     plt.figure(figsize=(12, 6))
     plt.subplot(1, 2, 1)
-    sns.boxplot(y=df['Price'], color='lightgreen')
+    sns.boxplot(y=df['UnitPrice'], color='lightgreen')
     plt.title("Boxplot: Price")
     plt.subplot(1, 2, 2)
     sns.boxplot(y=df['Quantity'], color='lightblue')
@@ -340,7 +340,7 @@ def save_plots(df: pd.DataFrame) -> dict:
     if 'InvoiceDate' in df.columns:
         df['Month'] = df['InvoiceDate'].dt.to_period("M")
         monthly_avg = df.groupby('Month').agg(
-            Avg_Price=('Price', 'mean'),
+            Avg_Price=('UnitPrice', 'mean'),
             Avg_Quantity=('Quantity', 'mean')
         ).reset_index()
         monthly_avg['Month'] = monthly_avg['Month'].astype(str)
