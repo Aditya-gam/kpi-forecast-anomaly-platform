@@ -3,14 +3,14 @@ Retail Sales Data (UCI) - Basic Overview Report
 Dataset Shape (rows x columns): (541909, 8)
 
 Column Information:
- - InvoiceNo      : dtype=object, missing=    0, unique=25900
- - StockCode      : dtype=object, missing=    0, unique= 4070
- - Description    : dtype=object, missing= 1454, unique= 4223
- - Quantity       : dtype=int64, missing=    0, unique=  722
- - InvoiceDate    : dtype=datetime64[ns], missing=    0, unique=23260
- - UnitPrice      : dtype=float64, missing=    0, unique= 1630
- - CustomerID     : dtype=float64, missing=135080, unique= 4372
- - Country        : dtype=object, missing=    0, unique=   38
+ - StockCode   : dtype=object, missing=    0, unique= 4070
+ - Quantity    : dtype=int64, missing=    0, unique=  722
+ - UnitPrice   : dtype=float64, missing=    0, unique= 1630
+ - InvoiceNo   : dtype=object, missing=    0, unique=25900
+ - CustomerID  : dtype=float64, missing=135080, unique= 4372
+ - InvoiceDate : dtype=datetime64[ns], missing=    0, unique=23260
+ - Description : dtype=object, missing= 1454, unique= 4223
+ - Country     : dtype=object, missing=    0, unique=   38
 
 Statistical Summary for Numeric Columns:
             Quantity      UnitPrice     CustomerID
@@ -33,18 +33,18 @@ Invoice Cancellation Analysis:
 
 Sample Data (First 5 Rows):
 ======================================================================
-  InvoiceNo StockCode                          Description  Quantity         InvoiceDate  UnitPrice  CustomerID         Country
-0    536365    85123A   WHITE HANGING HEART T-LIGHT HOLDER         6 2010-12-01 08:26:00       2.55     17850.0  United Kingdom
-1    536365     71053                  WHITE METAL LANTERN         6 2010-12-01 08:26:00       3.39     17850.0  United Kingdom
-2    536365    84406B       CREAM CUPID HEARTS COAT HANGER         8 2010-12-01 08:26:00       2.75     17850.0  United Kingdom
-3    536365    84029G  KNITTED UNION FLAG HOT WATER BOTTLE         6 2010-12-01 08:26:00       3.39     17850.0  United Kingdom
-4    536365    84029E       RED WOOLLY HOTTIE WHITE HEART.         6 2010-12-01 08:26:00       3.39     17850.0  United Kingdom
+  StockCode  Quantity  UnitPrice InvoiceNo  CustomerID         InvoiceDate                          Description         Country
+0    85123A         6       2.55    536365     17850.0 2010-12-01 08:26:00   WHITE HANGING HEART T-LIGHT HOLDER  United Kingdom
+1     71053         6       3.39    536365     17850.0 2010-12-01 08:26:00                  WHITE METAL LANTERN  United Kingdom
+2    84406B         8       2.75    536365     17850.0 2010-12-01 08:26:00       CREAM CUPID HEARTS COAT HANGER  United Kingdom
+3    84029G         6       3.39    536365     17850.0 2010-12-01 08:26:00  KNITTED UNION FLAG HOT WATER BOTTLE  United Kingdom
+4    84029E         6       3.39    536365     17850.0 2010-12-01 08:26:00       RED WOOLLY HOTTIE WHITE HEART.  United Kingdom
 ======================================================================
 
 Extended Insights & Analysis
 ======================================================================
 Revenue Calculation:
- - Revenue (Price x Quantity) computed for each transaction.
+ - Revenue (UnitPrice x Quantity) computed for each transaction.
 
 Monthly Revenue Summary:
   Month     Revenue
@@ -139,10 +139,10 @@ Revenue     0.886681  -0.162029   -0.002274  1.000000
 
 Plots Generated:
  - Quantity Distribution: data/reports/plots1/quantity_distribution.png
- - Price Distribution: data/reports/plots1/price_distribution.png
+ - UnitPrice Distribution: data/reports/plots1/price_distribution.png
  - Monthly Revenue Trend: data/reports/plots1/monthly_revenue_trend_enhanced.png
  - Correlation Heatmap: data/reports/plots1/correlation_heatmap.png
- - Price vs. Quantity Scatter: data/reports/plots1/price_vs_quantity_scatter.png
- - Price & Quantity Boxplots: data/reports/plots1/price_quantity_boxplots.png
+ - UnitPrice vs. Quantity Scatter: data/reports/plots1/price_vs_quantity_scatter.png
+ - UnitPrice & Quantity Boxplots: data/reports/plots1/price_quantity_boxplots.png
  - Numeric Features Pairplot: data/reports/plots1/numeric_pairplot.png
- - Monthly Avg Price & Quantity: data/reports/plots1/monthly_avg_price_quantity.png
+ - Monthly Avg UnitPrice & Quantity: data/reports/plots1/monthly_avg_price_quantity.png

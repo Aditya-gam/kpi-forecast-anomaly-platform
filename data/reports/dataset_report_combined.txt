@@ -1,0 +1,165 @@
+Retail Sales Data (UCI) - Basic Overview Report
+======================================================================
+Dataset Shape (rows x columns): (1067370, 8)
+
+Column Information:
+ - StockCode   : dtype=object, missing=    0, unique= 5305
+ - Quantity    : dtype=int64, missing=    0, unique= 1057
+ - UnitPrice   : dtype=float64, missing=    0, unique= 2807
+ - InvoiceNo   : dtype=object, missing=    0, unique=53628
+ - CustomerID  : dtype=float64, missing=243007, unique= 5942
+ - InvoiceDate : dtype=object, missing=    0, unique=47635
+ - Description : dtype=object, missing= 4382, unique= 5698
+ - Country     : dtype=object, missing=    0, unique=   43
+
+Statistical Summary for Numeric Columns:
+           Quantity     UnitPrice     CustomerID
+count  1.067370e+06  1.067370e+06  824363.000000
+mean   9.938907e+00  4.649375e+00   15324.641712
+std    1.727059e+02  1.235531e+02    1697.462981
+min   -8.099500e+04 -5.359436e+04   12346.000000
+25%    1.000000e+00  1.250000e+00   13975.000000
+50%    3.000000e+00  2.100000e+00   15255.000000
+75%    1.000000e+01  4.150000e+00   16797.000000
+max    8.099500e+04  3.897000e+04   18287.000000
+
+InvoiceDate Analysis:
+ - Earliest Invoice Date: 2009-12-01 07:45:00
+ - Latest Invoice Date  : 2011-12-09 12:50:00
+
+Invoice Cancellation Analysis:
+ - Total Invoices       : 1067370
+ - Cancellation Invoices: 19494 (1.83%)
+
+Sample Data (First 5 Rows):
+======================================================================
+  StockCode  Quantity  UnitPrice InvoiceNo  CustomerID         InvoiceDate                          Description         Country
+0     85048        12       6.95    489434     13085.0 2009-12-01 07:45:00  15CM CHRISTMAS GLASS BALL 20 LIGHTS  United Kingdom
+1    79323P        12       6.75    489434     13085.0 2009-12-01 07:45:00                   PINK CHERRY LIGHTS  United Kingdom
+2    79323W        12       6.75    489434     13085.0 2009-12-01 07:45:00                  WHITE CHERRY LIGHTS  United Kingdom
+3     22041        48       2.10    489434     13085.0 2009-12-01 07:45:00         RECORD FRAME 7" SINGLE SIZE   United Kingdom
+4     21232        24       1.25    489434     13085.0 2009-12-01 07:45:00       STRAWBERRY CERAMIC TRINKET BOX  United Kingdom
+======================================================================
+
+Extended Insights & Analysis
+======================================================================
+Revenue Calculation:
+ - Revenue (UnitPrice x Quantity) computed for each transaction.
+
+Monthly Revenue Summary:
+  Month     Revenue
+2009-12  799847.110
+2010-01  624032.892
+2010-02  533091.426
+2010-03  765848.761
+2010-04  590580.432
+2010-05  615322.830
+2010-06  679786.610
+2010-07  575236.360
+2010-08  656776.340
+2010-09  853650.431
+2010-10 1045168.350
+2010-11 1422654.642
+2010-12 1126445.470
+2011-01  560000.260
+2011-02  498062.650
+2011-03  683267.080
+2011-04  493207.121
+2011-05  723333.510
+2011-06  691123.120
+2011-07  681300.111
+2011-08  682680.510
+2011-09 1019687.622
+2011-10 1070704.670
+2011-11 1461756.250
+2011-12  433668.010
+
+Top 10 Products by Total Quantity Sold:
+                       Description  Total_Quantity  Total_Revenue  Transaction_Count
+ WORLD WAR 2 GLIDERS ASSTD DESIGNS          108545       24898.22               1056
+WHITE HANGING HEART T-LIGHT HOLDER           93050      257533.90               5918
+     ASSORTED COLOUR BIRD ORNAMENT           81306      131413.85               2958
+           JUMBO BAG RED RETROSPOT           78090      148800.64               3469
+               BROCADE RING PURSE            70700       14743.41                483
+PACK OF 60 PINK PAISLEY CAKE CASES           56575       28373.68               2092
+       60 TEATIME FAIRY CAKE CASES           54366       27216.27               2271
+              SMALL POPCORN HOLDER           49616       43809.96               1562
+   PACK OF 72 RETROSPOT CAKE CASES           49344       28688.28               1852
+  PACK OF 72 RETRO SPOT CAKE CASES           46106       23759.26               1466
+
+Top 10 Products by Total Revenue:
+                        Description  Total_Quantity  Total_Revenue  Transaction_Count
+           REGENCY CAKESTAND 3 TIER           26126      327813.65               4412
+                     DOTCOM POSTAGE            1438      322647.47               1444
+ WHITE HANGING HEART T-LIGHT HOLDER           93050      257533.90               5918
+            JUMBO BAG RED RETROSPOT           78090      148800.64               3469
+                      PARTY BUNTING           28110      147948.50               2765
+      ASSORTED COLOUR BIRD ORNAMENT           81306      131413.85               2958
+    PAPER CHAIN KIT 50'S CHRISTMAS            35985      121662.14               2215
+                            POSTAGE            5157      112323.00               2114
+                      CHILLI LIGHTS           16702       84854.16               1211
+ROTATING SILVER ANGELS T-LIGHT HLDR           13775       73814.72                844
+
+Country-Level Analysis (by Total Revenue):
+             Country  Transactions  Total_Revenue
+      United Kingdom        981330   16382583.897
+                EIRE         17866     615519.550
+         Netherlands          5140     548524.950
+             Germany         17624     417988.561
+              France         14329     328173.800
+           Australia          1913     167129.070
+         Switzerland          3189      99728.760
+               Spain          3811      91859.480
+              Sweden          1364      87809.420
+             Denmark           817      65741.090
+             Belgium          3123      63574.490
+            Portugal          2620      53136.800
+               Japan           582      43776.580
+     Channel Islands          1664      41453.610
+              Norway          1455      39243.030
+               Italy          1534      30679.350
+             Finland          1049      29514.450
+              Cyprus          1176      24162.740
+             Austria           938      23177.600
+              Greece           663      18995.490
+           Hong Kong           364      14039.300
+           Singapore           346      13158.160
+              Israel           371      11107.220
+              Poland           535      10528.090
+United Arab Emirates           500       9948.650
+         Unspecified           756       9687.320
+           Lithuania           189       6553.740
+                 USA           535       6286.540
+             Iceland           253       5633.320
+               Malta           299       5192.220
+              Canada           228       4883.040
+                 RSA           169       3369.030
+            Thailand            76       3070.540
+             Bahrain           126       2861.550
+             Lebanon            58       1865.910
+              Brazil            94       1411.870
+  European Community            61       1291.750
+             Bermuda            34       1253.140
+               Korea            63        949.820
+      Czech Republic            30        707.720
+         West Indies            54        536.410
+        Saudi Arabia            10        131.170
+             Nigeria            32         -6.660
+
+Correlation Matrix for Numeric Features:
+            Quantity  UnitPrice  CustomerID   Revenue
+Quantity    1.000000  -0.001319   -0.005430  0.762623
+UnitPrice  -0.001319   1.000000   -0.003835  0.061029
+CustomerID -0.005430  -0.003835    1.000000 -0.003122
+Revenue     0.762623   0.061029   -0.003122  1.000000
+
+
+Plots Generated:
+ - Quantity Distribution: data/reports/plots_final/quantity_distribution.png
+ - UnitPrice Distribution: data/reports/plots_final/price_distribution.png
+ - Monthly Revenue Trend: data/reports/plots_final/monthly_revenue_trend_enhanced.png
+ - Correlation Heatmap: data/reports/plots_final/correlation_heatmap.png
+ - UnitPrice vs. Quantity Scatter: data/reports/plots_final/price_vs_quantity_scatter.png
+ - UnitPrice & Quantity Boxplots: data/reports/plots_final/price_quantity_boxplots.png
+ - Numeric Features Pairplot: data/reports/plots_final/numeric_pairplot.png
+ - Monthly Avg UnitPrice & Quantity: data/reports/plots_final/monthly_avg_price_quantity.png
