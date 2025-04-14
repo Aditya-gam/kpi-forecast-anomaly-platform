@@ -54,7 +54,7 @@ logger = logging.getLogger(__name__)
 # Default file paths (using DATA_PATH environment variable for raw data)
 DATA_PATH = os.getenv("DATA_PATH", "./data/raw")
 DEFAULT_INPUT1 = os.path.join(DATA_PATH, "online_retail_II.xlsx")
-DEFAULT_INPUT2 = os.path.join(DATA_PATH, "Online Retail.xlsx")
+DEFAULT_INPUT2 = os.path.join(DATA_PATH, "online_retail_I.xlsx")
 DEFAULT_OUTPUT = os.path.join("data", "interim", "combined_retail_data.csv")
 
 

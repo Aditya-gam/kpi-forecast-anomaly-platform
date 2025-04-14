@@ -78,10 +78,10 @@ STANDARD_COLUMNS = ['StockCode', 'Quantity', 'UnitPrice', 'InvoiceNo',
 
 # Define default file paths using the DATA_PATH environment variable.
 DEFAULT_INPUT = os.path.join(
-    os.getenv("DATA_PATH", "./data/raw"), "online_retail_II.xlsx")
+    os.getenv("DATA_PATH", "./data/raw"), "combined_retail_data.csv")
 DEFAULT_OUTPUT = os.path.join(
-    os.getenv("DATA_PATH", "./data/reports"), "dataset_report.txt")
-PLOTS_DIR = os.path.join("data", "reports", "plots1")
+    os.getenv("DATA_PATH", "./data/reports"), "combined_dataset_report.txt")
+PLOTS_DIR = os.path.join("data", "reports", "plots_final")
 
 
 def load_dataset(file_path: str) -> pd.DataFrame:
