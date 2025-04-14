@@ -120,10 +120,13 @@ markupsafe==3.0.2
 matplotlib==3.10.1
     # via
     #   -r requirements.in
+    #   missingno
     #   prophet
     #   seaborn
 mdurl==0.1.2
     # via markdown-it-py
+missingno==0.5.2
+    # via -r requirements.in
 ml-dtypes==0.5.1
     # via
     #   keras
@@ -142,6 +145,7 @@ numpy==1.26.4
     #   h5py
     #   keras
     #   matplotlib
+    #   missingno
     #   ml-dtypes
     #   pandas
     #   patsy
@@ -258,12 +262,16 @@ schema==0.7.7
     # via sagemaker
 scikit-learn==1.6.1
     # via -r requirements.in
-scipy==1.15.2
+scipy==1.13.0
     # via
+    #   -r requirements.in
+    #   missingno
     #   scikit-learn
     #   statsmodels
 seaborn==0.13.2
-    # via -r requirements.in
+    # via
+    #   -r requirements.in
+    #   missingno
 six==1.17.0
     # via
     #   astunparse
